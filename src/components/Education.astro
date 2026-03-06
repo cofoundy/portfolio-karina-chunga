@@ -1,0 +1,57 @@
+---
+import { siteConfig } from "../config";
+
+const flagMap: Record<string, string> = {
+  Argentina: "🇦🇷",
+  Perú: "🇵🇪",
+};
+---
+
+<section id="formacion" class="py-20 px-6" style="background: var(--color-surface);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading" style="color: var(--color-primary-dark);">
+        Formación
+      </h2>
+      <div class="w-16 h-1 mt-4 mx-auto rounded-full" style="background: var(--color-accent);"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {siteConfig.education.map((edu, i) => (
+        <div
+          class={`p-8 rounded-2xl bg-white card-hover reveal stagger-${(i % 2) + 1}`}
+          style="border: 1px solid rgba(74, 124, 46, 0.08);"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="text-lg font-bold font-heading" style="color: var(--color-primary-dark);">
+                {edu.degree}
+              </h3>
+              <p class="text-sm font-medium mt-1" style="color: var(--color-primary);">
+                {edu.school}
+              </p>
+            </div>
+            <span class="text-2xl" title={edu.country}>{flagMap[edu.country] || "🌎"}</span>
+          </div>
+          <p class="text-sm text-gray-500">{edu.detail}</p>
+        </div>
+      ))}
+    </div>
+
+    {siteConfig.cip && (
+      <div class="mt-8 text-center reveal stagger-3">
+        <div
+          class="inline-flex items-center gap-3 px-6 py-3 rounded-full"
+          style="background: white; border: 2px solid var(--color-primary);"
+        >
+          <svg class="w-5 h-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span class="text-sm font-semibold" style="color: var(--color-primary-dark);">
+            Colegio de Ingenieros del Perú · CIP N° {siteConfig.cip}
+          </span>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

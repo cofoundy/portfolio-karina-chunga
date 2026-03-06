@@ -1,0 +1,46 @@
+---
+import { siteConfig } from "../config";
+---
+
+<header
+  id="floating-header"
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 opacity-0 pointer-events-none transition-all duration-300"
+>
+  <nav
+    class="flex items-center gap-6 px-6 py-3 rounded-full border border-white/20 shadow-lg"
+    style="background: rgba(45, 80, 22, 0.9); backdrop-filter: blur(12px);"
+  >
+    <a href="#" class="text-white font-bold text-sm tracking-wide font-heading">KC</a>
+    <div class="hidden md:flex items-center gap-5 text-sm">
+      <a href="#sobre-mi" class="text-white/80 hover:text-white transition-colors">Sobre mí</a>
+      <a href="#expertise" class="text-white/80 hover:text-white transition-colors">Expertise</a>
+      <a href="#impacto" class="text-white/80 hover:text-white transition-colors">Impacto</a>
+      <a href="#trayectoria" class="text-white/80 hover:text-white transition-colors">Trayectoria</a>
+      <a href="#formacion" class="text-white/80 hover:text-white transition-colors">Formación</a>
+    </div>
+    <a
+      href={`mailto:${siteConfig.social.email}`}
+      class="text-xs font-semibold px-4 py-1.5 rounded-full transition-all btn-hover"
+      style="background: var(--color-accent); color: #2D5016;"
+    >
+      Contacto
+    </a>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('floating-header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 400) {
+      header?.classList.remove('opacity-0', 'pointer-events-none');
+      header?.classList.add('opacity-100', 'pointer-events-auto', 'header-visible');
+    } else {
+      header?.classList.add('opacity-0', 'pointer-events-none');
+      header?.classList.remove('opacity-100', 'pointer-events-auto');
+    }
+    lastScroll = currentScroll;
+  });
+</script>

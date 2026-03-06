@@ -1,0 +1,49 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section id="trayectoria" class="py-20 px-6" style="background: white;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading" style="color: var(--color-primary-dark);">
+        Mi Camino
+      </h2>
+      <div class="w-16 h-1 mt-4 mx-auto rounded-full" style="background: var(--color-accent);"></div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Vertical line (mobile) / Horizontal line (desktop) -->
+      <div class="hidden md:block absolute top-6 left-0 right-0 h-0.5 rounded-full" style="background: var(--color-surface);"></div>
+      <div class="md:hidden absolute top-0 bottom-0 left-6 w-0.5 rounded-full" style="background: var(--color-surface);"></div>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-6">
+        {siteConfig.experience.map((exp, i) => (
+          <div class={`relative reveal stagger-${(i % 3) + 1} ${i >= 3 ? 'md:mt-8' : ''}`}>
+            <!-- Dot -->
+            <div class="hidden md:block absolute top-4 left-1/2 -translate-x-1/2 z-10">
+              <div class="w-4 h-4 rounded-full border-3" style={`background: var(--color-accent); border: 3px solid white; box-shadow: 0 0 0 2px var(--color-primary);`}></div>
+            </div>
+            <div class="md:hidden absolute top-2 left-4 z-10">
+              <div class="w-4 h-4 rounded-full" style={`background: var(--color-accent); border: 3px solid white; box-shadow: 0 0 0 2px var(--color-primary);`}></div>
+            </div>
+
+            <!-- Card -->
+            <div class="ml-14 md:ml-0 md:mt-12 p-6 rounded-xl card-hover" style="background: var(--color-surface-light); border: 1px solid rgba(74, 124, 46, 0.08);">
+              <p class="text-xs font-semibold mb-2" style="color: var(--color-accent);">
+                {exp.period}
+              </p>
+              <h3 class="text-base font-bold font-heading mb-1" style="color: var(--color-primary-dark);">
+                {exp.role}
+              </h3>
+              <p class="text-sm font-medium mb-3" style="color: var(--color-primary);">
+                {exp.org}
+              </p>
+              <p class="text-sm text-gray-600 leading-relaxed">{exp.highlight}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
